@@ -1,0 +1,282 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.35s linear;
+}
+
+section {
+  background-color: #121413;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.audio {
+  width: 400px;
+  height: 480px;
+  position: relative;
+}
+.audio .progress {
+  position: absolute;
+  top: 240px;
+  left: 0;
+  z-index: 1;
+}
+.audio .progress span {
+  width: 15px;
+  height: 15px;
+  border-radius: 1px;
+  border: none;
+  display: block;
+  position: absolute;
+  transform-origin: 240px;
+  transform: rotateZ(calc(var(--i) * 3.6deg));
+}
+.audio .progress span:hover {
+  background-color: #f09;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.audio .progress span.active {
+  background-color: #f09;
+  box-shadow: 0 -10px 10px #fff, 0 -15px 15px #fff, 0 0 42px #f09, 0 0 82px #f09, 0 0 92px #f09, 0 0 102px #f09, 0 0 151px #f09;
+}
+.audio .info {
+  position: absolute;
+  z-index: 2;
+  width: 420px;
+  height: 420px;
+  top: 35px;
+  left: 30px;
+  -webkit-backdrop-filter: blur(20px) brightness(125%);
+          backdrop-filter: blur(20px) brightness(125%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.audio .thumbnail {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: 3px solid;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  color: #f09;
+  box-shadow: 0 0 15px #f09;
+}
+.audio .thumbnail img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.audio .thumbnail .play_pause {
+  position: absolute;
+  top: 20%;
+  left: 22%;
+  right: 25%;
+  bottom: 25%;
+  display: grid;
+  font-size: 5rem;
+  cursor: pointer;
+  transform: scale(2);
+  opacity: 0;
+  color: white;
+}
+.audio .thumbnail .play_pause:hover {
+  transform: scale(1);
+  opacity: 1;
+}
+.audio .volume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 1rem auto;
+  gap: 1rem;
+}
+.audio .volume span {
+  width: 25px;
+  height: 25px;
+  background-color: #f09;
+  color: #f09;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-weight: 700;
+  transform: scale(1);
+  box-shadow: 0 0 15px #f09;
+}
+.audio .volume:hover span {
+  background-color: #121413;
+  transform: scale(1);
+  width: 35px;
+  height: 35px;
+}
+.audio .volume .volume-progress {
+  width: 150px;
+  background-color: #121413;
+  height: 8px;
+  border-radius: 8px;
+}
+.audio .volume .volume-progress .volume-bar {
+  width: 50%;
+  background-color: #f09;
+  height: 8px;
+  border-radius: 8px;
+}
+.audio .speed {
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: 0.5ms;
+  padding-bottom: 10px;
+}
+.audio .speed button {
+  justify-content: center;
+  background-color: #121413;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 5px #f09;
+}
+.audio .speed button i {
+  color: #f09;
+  height: 10px;
+  width: 20px;
+}
+.audio .speed button p {
+  color: white;
+  font-size: x-small;
+  padding-top: 2px;
+}
+.audio .speed .speed-dropdown {
+  display: none;
+  overflow: auto;
+}
+.audio .speed .speed-dropdown a {
+  text-decoration: none;
+  color: white;
+  font-size: small;
+  padding: 5px;
+}
+.audio .speed .speed-dropdown a:hover {
+  color: #f09;
+  font-size: smaller;
+}
+.audio .speed:hover .speed-dropdown {
+  display: flex;
+}
+.audio .action .song {
+  text-align: center;
+  margin-block-end: 0.75rem;
+  font-size: 1.5rem;
+  color: #f09;
+}
+.audio .action .song .name {
+  line-height: 2.25rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.audio .action .song .singer {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-block-start: 0.25rem;
+}
+.audio .action .time {
+  text-align: center;
+  color: white;
+  padding-bottom: 5px;
+}
+
+@media (max-width: 400px) {
+  section {
+    display: flex;
+    justify-self: center;
+  }
+  section .audio {
+    height: 300px;
+    width: 350px;
+  }
+  section .audio .progress {
+    top: 175px;
+  }
+  section .audio .progress span {
+    background-color: rgb(27, 27, 27);
+    height: 5px;
+    width: 15px;
+    border-radius: 50%;
+    transform-origin: 170px;
+  }
+  section .audio .progress span.active {
+    background-color: #f09;
+    box-shadow: 0 0 42px #f09, 0 0 82px #f09, 0 0 92px #f09, 0 0 102px #f09, 0 0 151px #f09;
+  }
+  section .audio .info {
+    height: 280px;
+    width: 280px;
+  }
+  section .audio .info .thumbnail {
+    height: 80px;
+    width: 80px;
+  }
+  section .audio .info .thumbnail .play_pause {
+    position: absolute;
+    left: 18%;
+    top: 18%;
+    font-size: 3rem;
+  }
+  section .audio .info .volume span {
+    justify-self: center;
+    height: 20px;
+    width: 20px;
+    background-color: #121413;
+    font-weight: 500;
+  }
+  section .audio .info .volume:hover span {
+    transform: scale(1);
+    width: 25px;
+    height: 25px;
+  }
+  section .audio .info .volume .volume-progress {
+    display: none;
+  }
+  section .audio .info .speed button {
+    height: 25px;
+    width: 25px;
+    padding: 0;
+  }
+  section .audio .info .speed button p {
+    display: none;
+  }
+  section .audio .info .speed .speed-dropdown a {
+    font-size: xx-small;
+  }
+  section .audio .info .action .song {
+    text-align: center;
+    font-size: small;
+  }
+  section .audio .info .action .song .name {
+    line-height: normal;
+    font-size: large;
+  }
+  section .audio .info .action .song .singer {
+    line-height: normal;
+    font-size: small;
+  }
+  section .audio .info .action .time {
+    font-size: xx-small;
+  }
+}/*# sourceMappingURL=style.css.map */
